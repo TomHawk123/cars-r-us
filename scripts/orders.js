@@ -1,8 +1,14 @@
 import { getInteriors, getPaintColors, getTechnologies, getWheels, getOrders, getVehicleModels } from "./database.js";
 
-
+// ?declare a function? with an object as a parameter that will have an order-object as an argument.
+// This function will contain nested functions that will return the id properties of the interior and 
+// the order. ?That makes this a higher order function?
 const buildOrderListItem = (order) => {
+    // invoke the function that iterates through all of the interiors in the database array. 
     const interiors = getInteriors()
+    // declare an immutable var and set it equal to a function with an argument that is an
+    // array of objects(database.interior). The .find will return the orderId && the id property
+    // of the interior. 
     const foundInterior = interiors.find(
         (interior) => {
             return interior.id === order.interiorId

@@ -1,5 +1,9 @@
+// Declare a database variable and set it equal to an object with keys that have
+// arrays of objects.
 const database = {
+    // paintColors is a key with and array of objects as a value.
     paintColors: [
+        //each object contains a UID and other like properties.
         { id: 1, color: "Silver", price: 500 },
         { id: 2, color: "Midnight Blue", price: 750 },
         { id: 3, color: "Firebrick Red", price: 1000 },
@@ -30,10 +34,12 @@ const database = {
         { id: 2, model: "SUV", priceMultiplier: 1.5 },
         { id: 3, model: "Truck", priceMultiplier: 2.25 }
     ],
+    // customOrders is a key of database with an empty array as a value
     customOrders: [],
+    // orderBuilder is a key of database with and empty object as a value
     orderBuilder: {}
 }
-
+// exporting a function that iterates through the paintColors array
 export const getPaintColors = () => {
     return database.paintColors.map((paintColor) => ({ ...paintColor }))
 }
@@ -57,7 +63,8 @@ export const getOrders = () => {
 export const getVehicleModels = () => {
     return database.vehicleModels.map(vehicleModel => ({...vehicleModel}))
 }
-
+// exporting a function with an integer that will be passed a UID as an argument later
+// This is to capture the change of state as a user makes selections
 export const setPaintColor = (id) => {
     database.orderBuilder.paintColorId = id
 }
@@ -77,19 +84,23 @@ export const setTechnology = (id) => {
 export const setModel = (id) => {
     database.orderBuilder.modelId = id
 }
-
+// exporting a funtion that creates an order that tracks a user's selections and has
+// a custom event listener. 
 export const addCustomOrder = () => {
-    // Copy the current state of user choices
+    // setting an immutable variable equal to a copy the current state of user choices
     const newOrder = {...database.orderBuilder}
 
-    // Add a new primary key to the object
+    // Add a new primary key to the object by setting an immutable variable euqal to the
+    // length of the database array with the customOrders property that is set to an
+    // empty array
     const lastIndex = database.customOrders.length
     newOrder.id = lastIndex + 1
 
     // Add a timestamp to the order
     newOrder.timestamp = Date.now()
 
-    // Add the new order object to custom orders state
+    // Add the new order object to custom orders state by using the push method to add
+    // newOrder user choices/state to the last spot in the customOrders array, which is empty.
     database.customOrders.push(newOrder)
 
     // Reset the temporary state for user choices
