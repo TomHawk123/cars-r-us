@@ -17,7 +17,7 @@ document.addEventListener(
         // equal to the string of "orderButton"
         if (itemClicked.id === "orderButton") {
             // if the aboce condtional is true...
-            const customOrder = addCustomOrder()
+            addCustomOrder()
 
 
         }
